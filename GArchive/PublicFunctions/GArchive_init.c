@@ -27,7 +27,7 @@
 #include "GLog/GLog.h"
 #include "GZero/GZero.h"
 
-int GArchive_init(GArchive *p_archive_in, char *p_archiveDataFilename_in)
+int GArchive_init(GArchive *p_archive_in, char *p_archiveDataFilename_in, char *p_archiveFilename_in)
 {
   /* Declaring local variables */
   char directoryBuffer[GARCHIVE_DIRECTORY_BUFFER];
@@ -70,8 +70,18 @@ int GArchive_init(GArchive *p_archive_in, char *p_archiveDataFilename_in)
   /* Store directory to archive folder */
   strcpy(p_archive_in->p_archiveDirectory, directoryBuffer);
 
+  /* Store filename */
+  if (p_archiveFilename_in != NULL)
+  {
+    strcpy(p_archive_in->p_archiveFilename, p_archiveFilename_in);
+  }
+  else
+  {
+    strcpy(p_archive_in->p_archiveFilename, "Data.csv");
+  }
+
   /* Create directory to data file */
-  sprintf(dataFileDirectory, "%s/Data.csv", directoryBuffer);
+  sprintf(dataFileDirectory, "%s/%s", directoryBuffer, p_archive_in->p_archiveFilename);
 
   /* Check file exists */
   if (GArchive_checkFileExists(dataFileDirectory) == GCONST_TRUE)

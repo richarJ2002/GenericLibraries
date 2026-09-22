@@ -8,3 +8,7 @@ add_library(GArchive
   PublicFunctions/GArchive_writeHeader.c
   PublicFunctions/GArchive_writeLine.c
 )
+
+target_link_libraries(GArchive
+  PRIVATE GUtilities
+)

@@ -107,13 +107,16 @@ extern int GArchive_close(GArchive *p_archive_in);
  * @param[in]     p_archiveDataFilename_in
  *                String containting path to which the archive file.
  *                (e.g ArchiveData/RigidBody)
+ * @param[in]     p_archiveFilename_in
+ *                String containing the archive filename (e.g. "trajectory.csv").
+ *                If NULL, defaults to "Data.csv".
  *
  * @return        Upon a successful completion, the fucntion will return a
  *                GCONST_TRUE. If an error in the codes execution occurs, the
  *                function will return a GCONST_FALSE
  */
 extern int
-    GArchive_init(GArchive *p_archive_in, char *p_archiveDataFilename_in);
+    GArchive_init(GArchive *p_archive_in, char *p_archiveDataFilename_in, char *p_archiveFilename_in);
 
 /*!
  * @brief         Writes a header to the archive. Should be put after all the

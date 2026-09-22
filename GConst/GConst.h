@@ -66,6 +66,22 @@ extern "C" {
  */
 #define GCONST_EXIT_FAILURE                (1)
 
+/*!
+ * @brief       Constant which is used to represent a successful run status.
+ *
+ * @frame       N/A
+ * @unit        N/A
+ */
+#define GCONST_RUN_SUCCESS                 (0)
+
+/*!
+ * @brief       Constant which is used to represent a failed run status.
+ *
+ * @frame       N/A
+ * @unit        N/A
+ */
+#define GCONST_RUN_ERROR                   (-1)
+
 /* ------------------------------------------------------------------------ *
  * TOLLERANCE CONSTANTS
  * ------------------------------------------------------------------------ */
@@ -125,6 +141,22 @@ extern "C" {
  * @unit        m
  */
 #define GCONST_PM_TOLERANC                 (0.000000000001)
+
+/*!
+ * @brief       Euler's number (e).
+ *
+ * @frame       N/A
+ * @unit        N/A
+ */
+#define GCONST_EULERS_NUMBER               (2.71828182845904523536028747135266249775724709)
+
+/*!
+ * @brief       Constant which represents a femto meter in standard units.
+ *
+ * @frame       N/A
+ * @unit        m
+ */
+#define GCONST_FM_TOLERANCE                (0.000000000000001)
 
 /* ------------------------------------------------------------------------ *
  * ROTATION CONSTANTS

@@ -5,7 +5,6 @@
  *                   struct
  *
  *    @ Date:        28/01/2024
- *
  */
 
 #include <signal.h>
@@ -22,26 +21,26 @@
 /* Generic Libraries */
 #include "GConst/GConst.h"
 #include "GLog/GLog.h"
-#include "GParser/GParser.h"
+#include "GParserIni/GParserIni.h"
 #include "GZero/GZero.h"
 
 int GUtilities_init(const char *p_paramsFilePath)
 {
   /* Defining local variables */
   dictionary   *dic;
-  GParser_State GParser_state;
+  GParserIni_State GParserIni_state;
 
   /* Clearing local variables */
-  GZero(&GParser_state, GParser_State);
+  GZero(&GParserIni_state, GParserIni_State);
   dic = NULL;
 
   /* Set signal handling for SIGINT */
   signal(SIGINT, GUtilities_sigintHandle);
 
   /* Loading parameters into dictionaries */
-  dic = GParser_loadParams(&GParser_state, p_paramsFilePath);
+  dic = GParserIni_loadParams(&GParserIni_state, p_paramsFilePath);
 
-  /* Check parameters are laoded */
+  /* Check parameters are loaded */
   if (dic == NULL)
   {
     GError("Params weren't loaded correctly");
@@ -49,26 +48,26 @@ int GUtilities_init(const char *p_paramsFilePath)
 
   /* ---------------- Load parameters into Utilities struct ---------------- */
 
-  GParser_loadDouble(&GParser_state,
-                     dic,
-                     &Utilities.simTimeEnd_s,
-                     "TimeParameters:simTimeEnd");
+  GParserIni_loadDouble(&GParserIni_state,
+                        dic,
+                        &Utilities.simTimeEnd_s,
+                        "TimeParameters:simTimeEnd");
 
-  GParser_loadDouble(&GParser_state,
-                     dic,
-                     &Utilities.simTimeStep_s,
-                     "TimeParameters:simTimeStep");
+  GParserIni_loadDouble(&GParserIni_state,
+                        dic,
+                        &Utilities.simTimeStep_s,
+                        "TimeParameters:simTimeStep");
 
-  GParser_loadDouble(&GParser_state,
-                     dic,
-                     &Utilities.simTime_s,
-                     "TimeParameters:simTimeInitial");
+  GParserIni_loadDouble(&GParserIni_state,
+                        dic,
+                        &Utilities.simTime_s,
+                        "TimeParameters:simTimeInitial");
 
   /* Set the simulation status to True */
   Utilities.runSimStatus = GCONST_TRUE;
 
   /* Close Params */
-  GParser_closeParams(&GParser_state, dic);
+  GParserIni_closeParams(&GParserIni_state, dic);
 
   return GCONST_TRUE;
 }
